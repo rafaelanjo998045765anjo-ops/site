@@ -3,12 +3,11 @@
 <head>
     <!-- ============================================
          RAFAEL EXTERNAL - LOADER SYSTEM
-         Integrado com KeyAuth API Real (CORRIGIDO)
          Design: Cyberpunk Neon | Preto + Azul
          ============================================ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rafael External - FiveM Loader com KeyAuth">
+    <meta name="description" content="Rafael External - FiveM Loader">
     <meta name="author" content="Rafael External Team">
     <meta name="theme-color" content="#00d4ff">
     <title>Rafael External | Premium Loader</title>
@@ -264,62 +263,6 @@
             font-weight: 700;
         }
 
-        /* LOGIN FORM */
-        .login-form {
-            position: relative;
-            z-index: 1;
-            margin: 30px 0;
-        }
-
-        .input-wrapper {
-            position: relative;
-            margin-bottom: 30px;
-        }
-
-        .input-label {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 18px 24px;
-            background: rgba(26, 26, 26, 0.8);
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 14px;
-            color: var(--text);
-            font-size: 1.1rem;
-            font-family: 'Roboto Mono', monospace;
-            transition: all 0.3s;
-            outline: none;
-        }
-
-        .input-field:focus {
-            border-color: var(--primary);
-            background: rgba(26, 26, 26, 1);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3), inset 0 0 20px rgba(0, 212, 255, 0.05);
-            transform: translateY(-2px);
-        }
-
-        .input-field::placeholder {
-            color: var(--text-muted);
-        }
-
-        .input-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary);
-            font-size: 1.2rem;
-            pointer-events: none;
-        }
-
         /* BUTTON */
         .btn-primary {
             width: 100%;
@@ -338,6 +281,7 @@
             overflow: hidden;
             transition: all 0.4s;
             box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
+            margin: 30px 0;
         }
 
         .btn-primary::before {
@@ -364,68 +308,9 @@
             transform: translateY(-2px);
         }
 
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .btn-primary.loading {
-            pointer-events: none;
-        }
-
-        .btn-loader {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: rgba(0, 255, 170, 0.5);
-            transition: width 2s ease-out;
-        }
-
-        .btn-primary.loading .btn-loader {
-            display: block;
-            width: 100%;
-        }
-
         .btn-text {
             position: relative;
             z-index: 1;
-        }
-
-        /* MESSAGES */
-        .message {
-            margin: 20px 0;
-            padding: 16px 20px;
-            border-radius: 12px;
-            font-weight: 600;
-            text-align: center;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        .message.error {
-            background: rgba(255, 51, 102, 0.15);
-            border: 2px solid var(--error);
-            color: var(--error);
-        }
-
-        .message.success {
-            background: rgba(0, 255, 136, 0.15);
-            border: 2px solid var(--success);
-            color: var(--success);
-        }
-
-        .message.warning {
-            background: rgba(255, 170, 0, 0.15);
-            border: 2px solid var(--warning);
-            color: var(--warning);
-        }
-
-        .message-icon {
-            font-size: 1.2rem;
-            margin-right: 8px;
         }
 
         /* FOOTER INFO */
@@ -1102,11 +987,6 @@
             .login-card {
                 padding: 30px 20px;
             }
-
-            .input-field {
-                font-size: 1rem;
-                padding: 16px 20px;
-            }
         }
 
         /* ============================================
@@ -1122,17 +1002,6 @@
 
         .mb-20 {
             margin-bottom: 20px;
-        }
-
-        /* LOADING SPINNER */
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
@@ -1176,39 +1045,19 @@
                         <span class="gradient-text">RAFAEL</span><br>
                         <span class="gradient-text secondary">EXTERNAL</span>
                     </h1>
-                    <p class="subtitle">FiveM Loader</p>
+                    <p class="subtitle">Premium FiveM Loader</p>
                     <span class="version-tag">v2.1.0 STABLE</span>
                 </div>
 
-                <!-- LOGIN FORM -->
-                <form class="login-form" id="loginForm">
-                    <div class="input-wrapper">
-                        <label class="input-label">KeyAuth License</label>
-                        <input
-                            type="text"
-                            class="input-field"
-                            id="keyInput"
-                            placeholder="Digite sua chave de acesso"
-                            autocomplete="off"
-                            required
-                            minlength="4"
-                        >
-                        <span class="input-icon">🔑</span>
-                    </div>
-
-                    <button type="submit" class="btn-primary" id="loginBtn">
-                        <span class="btn-text">ACESSAR SISTEMA</span>
-                        <div class="btn-loader"></div>
-                    </button>
-                </form>
-
-                <!-- MESSAGES -->
-                <div id="messageContainer"></div>
+                <!-- BOTÃO DE ENTRADA -->
+                <button class="btn-primary" id="enterBtn">
+                    <span class="btn-text">ENTRAR NO PAINEL</span>
+                </button>
 
                 <!-- FOOTER -->
                 <div class="login-footer">
                     <p>© 2025 <strong>Rafael External</strong>. Todos os direitos reservados.</p>
-                    <p>Proteção avançada com <strong>KeyAuth</strong> | Anti-Leak System</p>
+                    <p>Desenvolvido com ❤️ pela equipe Rafael External</p>
                 </div>
             </div>
         </div>
@@ -1223,7 +1072,7 @@
             <div class="header-left">
                 <img src="https://pfst.cf2.poecdn.net/base/image/f034ea345ef502d77285fa6a083d67354ded70b3c7310fbb061d7375e20dc0a7?w=4096&h=4096" alt="Rafael External" class="header-logo">
                 <div class="header-info">
-                    <h2>Bem-vindo, <span class="username" id="usernameDisplay"></span></h2>
+                    <h2>Bem-vindo, <span class="username" id="usernameDisplay">Usuário</span></h2>
                     <span class="status-badge">ONLINE</span>
                 </div>
             </div>
@@ -1252,7 +1101,7 @@
                         </div>
                         <div class="info-item">
                             <strong>Expira em</strong>
-                            <span id="expiryDisplay">Carregando...</span>
+                            <span id="expiryDisplay">Vitalício ♾️</span>
                         </div>
                         <div class="info-item">
                             <strong>Seu IP</strong>
@@ -1267,7 +1116,7 @@
                     <!-- DOWNLOAD SECTION -->
                     <div class="download-section">
                         <h3>Baixar Loader</h3>
-                        <a href="downloads/loader.zip" class="btn-download" download>
+                        <a href="downloads/Loader.exe" class="btn-download" download>
                             <span class="download-icon">⬇</span>
                             RAFAEL EXTERNAL v2.1
                         </a>
@@ -1287,7 +1136,7 @@
                 <div class="card-header">
                     <h3>Atualizações</h3>
                 </div>
-                <div class="card-body changelog-body" id="changelogContainer">
+                <div class="card-body changelog-body">
                     <div class="changelog-item">
                         <div class="changelog-version">v2.1.0</div>
                         <div class="changelog-date">15 de Janeiro, 2025</div>
@@ -1356,11 +1205,11 @@
                 <div class="card-body">
                     <div class="support-links">
                         <a href="https://discord.gg/anB2pQSkrA" target="_blank" class="support-link">
-                            <span class="support-icon"></span>
+                            <span class="support-icon">💬</span>
                             <span>Entrar no Discord</span>
                         </a>
-                        <a href="https://discord.gg/anB2pQSkrA" class="support-link">
-                            <span class="support-icon"></span>
+                        <a href="https://discord.gg/anB2pQSkrA" target="_blank" class="support-link">
+                            <span class="support-icon">✉️</span>
                             <span>E-mail Suporte</span>
                         </a>
                     </div>
@@ -1381,28 +1230,9 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <!-- ============================================
-         MAIN SCRIPT - KEYAUTH INTEGRATION (CORRIGIDO)
+         MAIN SCRIPT (SIMPLIFICADO - SEM KEYAUTH)
          ============================================ -->
     <script>
-        // ============================================
-        // KEYAUTH CONFIGURATION
-        // ============================================
-        const KEYAUTH_CONFIG = {
-            name: "RAFAEL EXTERNAL",
-            ownerid: "PiLEJAjP0W",
-            version: "1.0"
-        };
-
-        // SESSION STORAGE
-        const SESSION = {
-            sessionid: null,
-            user: null,
-            subscription: null,
-            expiry: null,
-            ip: null,
-            isAuthenticated: false
-        };
-
         // ============================================
         // PARTICLES.JS CONFIG
         // ============================================
@@ -1501,234 +1331,31 @@
         });
 
         // ============================================
-        // KEYAUTH API FUNCTIONS (CORRIGIDO)
+        // BOTÃO DE ENTRADA - VAI DIRETO PARA DASHBOARD
         // ============================================
-
-        /**
-         * Inicializa uma sessão com o KeyAuth
-         * Este passo é OBRIGATÓRIO antes de qualquer outra operação
-         */
-        async function initKeyAuth() {
-            try {
-                const formData = new FormData();
-                formData.append('type', 'init');
-                formData.append('name', KEYAUTH_CONFIG.name);
-                formData.append('ownerid', KEYAUTH_CONFIG.ownerid);
-                formData.append('ver', KEYAUTH_CONFIG.version);
-
-                const response = await fetch('https://keyauth.win/api/1.2/', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                console.log('KeyAuth Init Response:', data);
-
-                if (data.success) {
-                    SESSION.sessionid = data.sessionid;
-                    return {
-                        success: true,
-                        sessionid: data.sessionid
-                    };
-                } else {
-                    return {
-                        success: false,
-                        message: data.message || 'Erro ao inicializar sessão'
-                    };
-                }
-            } catch (error) {
-                console.error('KeyAuth Init Error:', error);
-                return {
-                    success: false,
-                    message: 'Erro ao conectar com o servidor KeyAuth'
-                };
-            }
-        }
-
-        /**
-         * Valida uma licença com o KeyAuth
-         * Requer sessionid válido
-         */
-        async function validateKeyAuth(licenseKey) {
-            try {
-                // Primeiro, inicializa a sessão
-                const initResult = await initKeyAuth();
-
-                if (!initResult.success) {
-                    return initResult;
-                }
-
-                // Agora valida a licença com o sessionid
-                const formData = new FormData();
-                formData.append('type', 'license');
-                formData.append('key', licenseKey);
-                formData.append('sessionid', SESSION.sessionid);
-                formData.append('name', KEYAUTH_CONFIG.name);
-                formData.append('ownerid', KEYAUTH_CONFIG.ownerid);
-
-                const response = await fetch('https://keyauth.win/api/1.2/', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                console.log('KeyAuth License Response:', data);
-
-                if (data.success) {
-                    return {
-                        success: true,
-                        username: data.info?.username || licenseKey.substring(0, 8),
-                        subscription: data.info?.subscriptions?.[0]?.subscription || 'Premium',
-                        expiry: data.info?.subscriptions?.[0]?.expiry || 'lifetime',
-                        ip: data.info?.ip || 'N/A'
-                    };
-                } else {
-                    return {
-                        success: false,
-                        message: data.message || 'Chave inválida ou expirada'
-                    };
-                }
-            } catch (error) {
-                console.error('KeyAuth Validation Error:', error);
-                return {
-                    success: false,
-                    message: 'Erro ao validar licença. Tente novamente.'
-                };
-            }
-        }
-
-        // ============================================
-        // UI FUNCTIONS
-        // ============================================
-        function showMessage(message, type = 'error') {
-            const container = document.getElementById('messageContainer');
-            const icons = {
-                'error': '⚠',
-                'success': '✓',
-                'warning': '⚡'
-            };
-
-            container.innerHTML = `
-                <div class="message ${type}">
-                    <span class="message-icon">${icons[type]}</span>
-                    ${message}
-                </div>
-            `;
-
-            setTimeout(() => {
-                container.innerHTML = '';
-            }, 5000);
-        }
-
-        function showLogin() {
-            document.getElementById('loginScreen').classList.remove('hidden');
-            document.getElementById('dashboardScreen').classList.remove('active');
-        }
-
-        function showDashboard(userData) {
-            SESSION.isAuthenticated = true;
-            SESSION.user = userData.username;
-            SESSION.subscription = userData.subscription;
-            SESSION.expiry = userData.expiry;
-            SESSION.ip = userData.ip;
-
+        document.getElementById('enterBtn').addEventListener('click', function() {
+            // Esconde tela de login
             document.getElementById('loginScreen').classList.add('hidden');
+
+            // Mostra dashboard
             document.getElementById('dashboardScreen').classList.add('active');
 
-            // Update dashboard info
-            document.getElementById('usernameDisplay').textContent = userData.username;
-            document.getElementById('planDisplay').textContent = userData.subscription;
-            document.getElementById('expiryDisplay').textContent = formatExpiry(userData.expiry);
-            document.getElementById('ipDisplay').textContent = userData.ip;
-
-            // Get real IP
+            // Busca IP do usuário
             getUserIP();
 
-            // Update online users
+            // Inicia contador de usuários online
             updateOnlineUsers();
-        }
-
-        function formatExpiry(expiry) {
-            if (!expiry || expiry === 'lifetime' || expiry === 'Vitalício') {
-                return 'Vitalício ♾️';
-            }
-
-            // KeyAuth retorna timestamp em segundos
-            const expiryDate = new Date(parseInt(expiry) * 1000);
-            const now = new Date();
-            const diff = expiryDate - now;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-            if (days < 0) {
-                return 'Expirado ❌';
-            } else if (days === 0) {
-                return 'Hoje ⏰';
-            } else if (days === 1) {
-                return '1 dia ⏳';
-            } else if (days < 7) {
-                return `${days} dias ⏳`;
-            } else if (days < 30) {
-                const weeks = Math.floor(days / 7);
-                return `${weeks} semana${weeks > 1 ? 's' : ''} 📅`;
-            } else {
-                const months = Math.floor(days / 30);
-                return `${months} mês${months > 1 ? 'es' : ''} 📅`;
-            }
-        }
-
-        // ============================================
-        // LOGIN FORM HANDLER
-        // ============================================
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const keyInput = document.getElementById('keyInput');
-            const loginBtn = document.getElementById('loginBtn');
-            const key = keyInput.value.trim();
-
-            if (!key) {
-                showMessage('Por favor, insira sua chave de acesso.', 'error');
-                return;
-            }
-
-            // Show loading
-            loginBtn.classList.add('loading');
-            loginBtn.disabled = true;
-
-            // Validate with KeyAuth
-            const result = await validateKeyAuth(key);
-
-            if (result.success) {
-                showMessage('✓ Login realizado com sucesso! Redirecionando...', 'success');
-
-                setTimeout(() => {
-                    showDashboard(result);
-                    loginBtn.classList.remove('loading');
-                    loginBtn.disabled = false;
-                }, 1500);
-            } else {
-                showMessage(result.message, 'error');
-                loginBtn.classList.remove('loading');
-                loginBtn.disabled = false;
-            }
         });
 
         // ============================================
-        // LOGOUT HANDLER
+        // LOGOUT - VOLTA PARA TELA INICIAL
         // ============================================
         document.getElementById('logoutBtn').addEventListener('click', function() {
-            SESSION.isAuthenticated = false;
-            SESSION.sessionid = null;
-            SESSION.user = null;
-            SESSION.subscription = null;
-            SESSION.expiry = null;
-            SESSION.ip = null;
+            // Esconde dashboard
+            document.getElementById('dashboardScreen').classList.remove('active');
 
-            showLogin();
-            document.getElementById('keyInput').value = '';
-            showMessage('Logout realizado com sucesso!', 'success');
+            // Mostra tela de login
+            document.getElementById('loginScreen').classList.remove('hidden');
         });
 
         // ============================================
@@ -1739,10 +1366,9 @@
                 const response = await fetch('https://api.ipify.org?format=json');
                 const data = await response.json();
                 document.getElementById('ipDisplay').textContent = data.ip;
-                SESSION.ip = data.ip;
             } catch (error) {
                 console.error('Error getting IP:', error);
-                document.getElementById('ipDisplay').textContent = SESSION.ip || 'N/A';
+                document.getElementById('ipDisplay').textContent = 'N/A';
             }
         }
 
@@ -1770,12 +1396,9 @@
         // CONSOLE BRANDING
         // ============================================
         console.log('%c RAFAEL EXTERNAL ', 'background: linear-gradient(135deg, #00d4ff, #00ffaa); color: #000; font-size: 24px; font-weight: bold; padding: 10px;');
-        console.log('%c FiveM Loader v1.1.0 ', 'color: #00d4ff; font-size: 14px;');
-        console.log('%c KeyAuth Integration: ATIVO ✓', 'color: #00ff88; font-size: 12px; font-weight: bold;');
-        console.log('%c Owner ID: ' + KEYAUTH_CONFIG.ownerid, 'color: #888; font-size: 12px;');
-
-        // Easter egg
-        console.log('%c\n🐺 Rafael External - Feito com dedicação pela equipe\n', 'color: #00d4ff; font-size: 16px;');
+        console.log('%c FiveM Loader v2.1.0 ', 'color: #00d4ff; font-size: 14px;');
+        console.log('%c🐺 Rafael External - Feito com dedicação pela equipe\n', 'color: #00d4ff; font-size: 16px;');
     </script>
 </body>
 </html>
+
