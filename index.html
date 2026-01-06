@@ -2,18 +2,19 @@
 <html lang="pt-BR">
 <head>
     <!-- ============================================
-         RAFAEL EXTERNAL - LOADER SYSTEM
+         RAFAEL MENU - PREMIUM LOADER SYSTEM
          Design: Cyberpunk Neon | Preto + Azul
+         Version: 2.0.0 ULTIMATE
          ============================================ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rafael External - FiveM Loader">
+    <meta name="description" content="Rafael External - FiveM Premium Loader">
     <meta name="author" content="Rafael External Team">
     <meta name="theme-color" content="#00d4ff">
     <title>Rafael External Loader</title>
 
     <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&family=Exo+2:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -30,6 +31,7 @@
 
         :root {
             --primary: #00d4ff;
+            --primary-dark: #00a8cc;
             --secondary: #00ffaa;
             --accent: #0099ff;
             --dark: #0a0a0a;
@@ -38,34 +40,23 @@
             --lighter: #2a2a2a;
             --text: #ffffff;
             --text-muted: #888888;
+            --text-soft: #aaaaaa;
             --success: #00ff88;
             --warning: #ffaa00;
             --error: #ff3366;
+            --purple: #7c3aed;
             --gradient: linear-gradient(135deg, #00d4ff 0%, #00ffaa 100%);
             --gradient-reverse: linear-gradient(135deg, #00ffaa 0%, #00d4ff 100%);
+            --gradient-vertical: linear-gradient(180deg, #00d4ff 0%, #00ffaa 100%);
             --shadow: 0 0 30px rgba(0, 212, 255, 0.4);
             --shadow-lg: 0 0 60px rgba(0, 212, 255, 0.6);
             --shadow-xl: 0 0 90px rgba(0, 212, 255, 0.8);
-            
-            /* Variáveis do sistema de fundo */
-            --primary-black: #0a0a0a;
-            --secondary-black: #141414;
-            --tertiary-black: #1a1a1a;
-            --accent-black: #242424;
-            --pure-white: #ffffff;
-            --off-white: #f5f5f5;
-            --light-gray: #e0e0e0;
-            --medium-gray: #a0a0a0;
-            --dark-gray: #404040;
-            --neon-white: #ffffff;
-            --glow-white: rgba(255, 255, 255, 0.8);
-            --shadow-white: rgba(255, 255, 255, 0.1);
-            --z-particles: 1;
-            --z-base: 10;
-            --z-content: 20;
-            --z-header: 30;
-            --z-modal: 100;
-            --z-notification: 200;
+            --glass: rgba(10, 10, 10, 0.85);
+            --glass-border: rgba(0, 212, 255, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -78,7 +69,7 @@
         }
 
         /* ============================================
-           BACKGROUND EFFECTS DO SISTEMA DE EMAIL
+           ANIMATED BACKGROUND SYSTEM
            ============================================ */
         .animated-background {
             position: fixed;
@@ -86,18 +77,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: var(--z-particles);
+            z-index: 1;
             overflow: hidden;
             pointer-events: none;
         }
 
         .particle {
             position: absolute;
-            background: var(--pure-white);
+            background: var(--primary);
             border-radius: 50%;
             opacity: 0;
             animation: particleFloat var(--duration) linear infinite;
             animation-delay: var(--delay);
+            box-shadow: 0 0 10px var(--primary);
         }
 
         @keyframes particleFloat {
@@ -105,55 +97,189 @@
                 transform: translateY(100vh) translateX(var(--start-x)) scale(0);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
             100% {
                 transform: translateY(-100px) translateX(var(--end-x)) scale(1);
                 opacity: 0;
             }
         }
 
-        /* Grid animado de fundo */
+        /* Cyber Grid */
         .grid-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: var(--z-particles);
+            z-index: 1;
             background-image:
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridScroll 20s linear infinite;
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridScroll 25s linear infinite;
             pointer-events: none;
         }
 
         @keyframes gridScroll {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 50px 50px;
-            }
+            0% { background-position: 0 0; }
+            100% { background-position: 60px 60px; }
         }
 
-        /* Efeito de luz radial que segue o mouse */
+        /* Scan Lines */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1) 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* Floating Orbs */
+        .floating-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 255, 170, 0.1) 0%, transparent 70%);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -7s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 153, 255, 0.12) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -30px) scale(1.1); }
+            50% { transform: translate(-30px, 50px) scale(0.95); }
+            75% { transform: translate(-50px, -20px) scale(1.05); }
+        }
+
+        /* Mouse Glow */
         .mouse-glow {
             position: fixed;
-            width: 600px;
-            height: 600px;
+            width: 500px;
+            height: 500px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
             pointer-events: none;
-            z-index: var(--z-particles);
+            z-index: 2;
             transform: translate(-50%, -50%);
             transition: opacity 0.3s ease;
             opacity: 0;
+        }
+
+        /* ============================================
+           LOADING SCREEN
+           ============================================ */
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #loadingScreen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            animation: loadingPulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px var(--primary));
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .loading-bar-container {
+            width: 300px;
+            height: 4px;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .loading-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .loading-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--primary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .loading-status {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-family: 'Roboto Mono', monospace;
         }
 
         /* ============================================
@@ -161,7 +287,7 @@
            ============================================ */
         #loginScreen {
             position: relative;
-            z-index: var(--z-base);
+            z-index: 10;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -176,7 +302,7 @@
         .login-container {
             position: relative;
             width: 100%;
-            max-width: 480px;
+            max-width: 520px;
             animation: floatIn 1s ease-out;
         }
 
@@ -185,23 +311,23 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
+            width: 700px;
+            height: 700px;
             background: radial-gradient(circle, var(--primary), transparent);
-            filter: blur(120px);
-            opacity: 0.4;
+            filter: blur(150px);
+            opacity: 0.3;
             animation: pulseGlow 4s ease-in-out infinite;
             pointer-events: none;
         }
 
         .login-card {
             position: relative;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
+            background: var(--glass);
+            backdrop-filter: blur(30px);
             border: 2px solid transparent;
-            border-radius: 24px;
-            padding: 50px 40px;
-            box-shadow: var(--shadow-lg), inset 0 0 40px rgba(0, 212, 255, 0.05);
+            border-radius: 28px;
+            padding: 50px 45px;
+            box-shadow: var(--shadow-lg), inset 0 0 50px rgba(0, 212, 255, 0.03);
             overflow: hidden;
         }
 
@@ -210,10 +336,9 @@
             position: absolute;
             inset: -2px;
             background: var(--gradient);
-            border-radius: 26px;
+            border-radius: 30px;
             z-index: -1;
             opacity: 0.8;
-            animation: rotateBorder 10s linear infinite;
         }
 
         .login-card::after {
@@ -223,14 +348,64 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-            animation: shine 8s linear infinite;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            animation: shine 10s linear infinite;
+        }
+
+        /* Tech Lines Decoration */
+        .tech-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 28px;
+        }
+
+        .tech-line {
+            position: absolute;
+            background: var(--gradient);
+            opacity: 0.5;
+        }
+
+        .tech-line.horizontal {
+            width: 100px;
+            height: 1px;
+            animation: techLineH 8s linear infinite;
+        }
+
+        .tech-line.vertical {
+            width: 1px;
+            height: 100px;
+            animation: techLineV 8s linear infinite;
+        }
+
+        .tech-line:nth-child(1) { top: 20%; left: -100px; animation-delay: 0s; }
+        .tech-line:nth-child(2) { top: 50%; left: -100px; animation-delay: 2s; }
+        .tech-line:nth-child(3) { top: 80%; left: -100px; animation-delay: 4s; }
+        .tech-line:nth-child(4) { top: -100px; left: 20%; animation-delay: 1s; }
+        .tech-line:nth-child(5) { top: -100px; left: 70%; animation-delay: 3s; }
+
+        @keyframes techLineH {
+            0% { left: -100px; opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { left: calc(100% + 100px); opacity: 0; }
+        }
+
+        @keyframes techLineV {
+            0% { top: -100px; opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { top: calc(100% + 100px); opacity: 0; }
         }
 
         /* LOGO SECTION */
         .logo-section {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             position: relative;
             z-index: 1;
         }
@@ -238,47 +413,89 @@
         .wolf-logo-container {
             position: relative;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .wolf-logo {
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             object-fit: contain;
-            filter: drop-shadow(0 0 40px var(--primary));
+            filter: drop-shadow(0 0 50px var(--primary));
             animation: logoFloat 6s ease-in-out infinite;
             transition: transform 0.3s;
+            border-radius: 50%;
         }
 
         .wolf-logo:hover {
             transform: scale(1.1) rotate(5deg);
         }
 
-        .logo-pulse-ring {
+        .logo-ring {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 220px;
-            height: 220px;
             border: 2px solid var(--primary);
             border-radius: 50%;
             opacity: 0;
-            animation: pulseRing 3s ease-out infinite;
         }
 
-        .logo-pulse-ring:nth-child(2) {
-            animation-delay: 1s;
+        .logo-ring-1 {
+            width: 200px;
+            height: 200px;
+            animation: ringPulse 3s ease-out infinite;
+        }
+
+        .logo-ring-2 {
+            width: 220px;
+            height: 220px;
+            animation: ringPulse 3s ease-out infinite 1s;
+        }
+
+        .logo-ring-3 {
+            width: 240px;
+            height: 240px;
+            animation: ringPulse 3s ease-out infinite 2s;
+        }
+
+        @keyframes ringPulse {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
+        }
+
+        /* Hexagon Decoration */
+        .hexagon-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            animation: hexRotate 20s linear infinite;
+        }
+
+        .hexagon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes hexRotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         .main-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 900;
             margin-bottom: 10px;
-            line-height: 1.2;
+            line-height: 1.1;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
         }
 
         .gradient-text {
@@ -286,6 +503,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            background-size: 200% 200%;
             animation: gradientShift 3s ease infinite;
             display: inline-block;
         }
@@ -294,47 +512,109 @@
             background: var(--gradient-reverse);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
         }
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 500;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             text-transform: uppercase;
+            margin-bottom: 15px;
         }
 
         .version-tag {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 6px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
             background: rgba(0, 212, 255, 0.1);
             border: 1px solid var(--primary);
-            border-radius: 20px;
-            font-size: 0.9rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
             color: var(--primary);
             font-weight: 700;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .version-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        /* User Welcome Section */
+        .user-welcome {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 16px;
+        }
+
+        .welcome-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .welcome-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .user-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .user-detail-item i {
+            color: var(--primary);
+        }
+
+        .user-detail-item span {
+            color: var(--text-soft);
         }
 
         /* BUTTON */
         .btn-primary {
             width: 100%;
-            padding: 20px;
+            padding: 22px;
             background: var(--gradient);
             border: none;
-            border-radius: 14px;
+            border-radius: 16px;
             color: #000;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 900;
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: all 0.4s;
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
-            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.4);
+            margin: 25px 0;
         }
 
         .btn-primary::before {
@@ -349,8 +629,8 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 50px rgba(0, 212, 255, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 212, 255, 0.6);
         }
 
         .btn-primary:hover::before {
@@ -361,17 +641,54 @@
             transform: translateY(-2px);
         }
 
-        .btn-text {
-            position: relative;
-            z-index: 1;
+        .btn-icon {
+            margin-right: 12px;
+        }
+
+        /* Stats Preview */
+        .stats-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         /* FOOTER INFO */
         .login-footer {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 25px;
             padding-top: 20px;
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            border-top: 1px solid rgba(0, 212, 255, 0.15);
             color: var(--text-muted);
             font-size: 0.9rem;
         }
@@ -380,43 +697,62 @@
             color: var(--primary);
         }
 
-        /* DECORATIVE ELEMENTS */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Corner Decorations */
         .corner-decor {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border: 2px solid var(--primary);
-            opacity: 0.5;
+            opacity: 0.4;
             pointer-events: none;
         }
 
         .corner-decor.top-left {
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
             border-right: none;
             border-bottom: none;
             animation: cornerPulse 3s ease-in-out infinite;
         }
 
         .corner-decor.top-right {
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             border-left: none;
             border-bottom: none;
             animation: cornerPulse 3s ease-in-out infinite 0.5s;
         }
 
         .corner-decor.bottom-left {
-            bottom: 20px;
-            left: 20px;
+            bottom: 15px;
+            left: 15px;
             border-right: none;
             border-top: none;
             animation: cornerPulse 3s ease-in-out infinite 1s;
         }
 
         .corner-decor.bottom-right {
-            bottom: 20px;
-            right: 20px;
+            bottom: 15px;
+            right: 15px;
             border-left: none;
             border-top: none;
             animation: cornerPulse 3s ease-in-out infinite 1.5s;
@@ -428,7 +764,7 @@
         #dashboardScreen {
             display: none;
             position: relative;
-            z-index: var(--z-base);
+            z-index: 10;
             min-height: 100vh;
             padding: 20px;
         }
@@ -440,12 +776,12 @@
 
         /* HEADER */
         .dashboard-header {
-            max-width: 1400px;
-            margin: 0 auto 40px;
-            padding: 24px 32px;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(0, 212, 255, 0.3);
+            max-width: 1500px;
+            margin: 0 auto 30px;
+            padding: 20px 30px;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 2px solid var(--glass-border);
             border-radius: 20px;
             display: flex;
             justify-content: space-between;
@@ -462,52 +798,80 @@
         }
 
         .header-logo {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             object-fit: contain;
             filter: drop-shadow(0 0 20px var(--primary));
+            border-radius: 50%;
         }
 
         .header-info h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 5px;
-            color: var(--primary);
+            color: var(--text);
         }
 
-        .header-info .username {
+        .header-info h2 .username {
             color: var(--secondary);
             font-weight: 700;
         }
 
+        .header-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
         .status-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             padding: 6px 14px;
-            background: rgba(0, 255, 136, 0.2);
+            background: rgba(0, 255, 136, 0.15);
             border: 1px solid var(--success);
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--success);
             text-transform: uppercase;
-            animation: statusPulse 2s ease-in-out infinite;
+            letter-spacing: 1px;
         }
 
         .status-badge::before {
-            content: '●';
-            margin-right: 6px;
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
             animation: blink 1s infinite;
+        }
+
+        .vip-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, rgba(255, 170, 0, 0.15), rgba(255, 85, 0, 0.15));
+            border: 1px solid var(--warning);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--warning);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .header-right {
             display: flex;
-            gap: 15px;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .btn-header {
-            padding: 12px 24px;
+            padding: 12px 22px;
             background: rgba(26, 26, 26, 0.8);
-            border: 2px solid rgba(0, 212, 255, 0.3);
+            border: 2px solid var(--glass-border);
             border-radius: 12px;
             color: var(--text);
             font-weight: 700;
@@ -517,6 +881,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.95rem;
         }
 
         .btn-header:hover {
@@ -535,24 +900,83 @@
         .btn-logout:hover {
             background: rgba(255, 51, 102, 0.2);
             border-color: var(--error);
+            box-shadow: 0 5px 20px rgba(255, 51, 102, 0.3);
+        }
+
+        /* USER INFO BAR */
+        .user-info-bar {
+            max-width: 1500px;
+            margin: 0 auto 30px;
+            padding: 18px 25px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 255, 170, 0.05));
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .user-info-items {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .user-info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-info-item i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .user-info-item .info-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-info-item .info-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .user-info-item .info-value {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .current-time {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 600;
         }
 
         /* DASHBOARD GRID */
         .dashboard-grid {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 24px;
         }
 
         /* CARD */
         .card {
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(0, 212, 255, 0.3);
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 2px solid var(--glass-border);
             border-radius: 20px;
-            padding: 30px;
+            padding: 28px;
             box-shadow: var(--shadow);
             transition: all 0.4s;
             position: relative;
@@ -576,17 +1000,38 @@
         }
 
         .card-header {
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+            margin-bottom: 22px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .card-header h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header h3 i {
+            font-size: 1.1rem;
+        }
+
+        .card-badge {
+            padding: 4px 12px;
+            background: rgba(0, 255, 136, 0.15);
+            border: 1px solid var(--success);
+            border-radius: 15px;
+            font-size: 0.7rem;
+            color: var(--success);
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .card-body {
@@ -600,65 +1045,115 @@
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
         }
 
         .info-item {
-            padding: 16px;
-            background: rgba(26, 26, 26, 0.6);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 12px;
+            padding: 18px;
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 14px;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gradient-vertical);
         }
 
         .info-item:hover {
             background: rgba(0, 212, 255, 0.05);
             border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
         }
 
         .info-item strong {
             display: block;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
+            font-size: 0.8rem;
+            margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .info-item span {
-            color: var(--primary);
-            font-size: 1.2rem;
+            color: var(--text);
+            font-size: 1.1rem;
             font-weight: 700;
+        }
+
+        .info-item span.highlight {
+            color: var(--primary);
         }
 
         /* DOWNLOAD SECTION */
         .download-section {
-            margin-top: 30px;
-            padding: 30px;
-            background: rgba(0, 212, 255, 0.05);
+            margin-top: 25px;
+            padding: 35px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(0, 255, 170, 0.05));
             border: 2px solid var(--primary);
-            border-radius: 16px;
+            border-radius: 18px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 60%);
+            animation: rotateBg 20s linear infinite;
+        }
+
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .download-section h3 {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             color: var(--primary);
+            position: relative;
+        }
+
+        .download-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 25px;
+            position: relative;
         }
 
         .btn-download {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 22px 50px;
+            gap: 14px;
+            padding: 24px 55px;
             background: var(--gradient);
             border: none;
-            border-radius: 14px;
+            border-radius: 16px;
             color: #000;
             font-size: 1.4rem;
             font-weight: 900;
@@ -669,8 +1164,8 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s;
-            box-shadow: 0 8px 40px rgba(0, 212, 255, 0.5);
-            margin: 10px 0;
+            box-shadow: 0 10px 50px rgba(0, 212, 255, 0.5);
+            letter-spacing: 2px;
         }
 
         .btn-download::before {
@@ -685,8 +1180,8 @@
         }
 
         .btn-download:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 60px rgba(0, 212, 255, 0.7);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 60px rgba(0, 212, 255, 0.7);
         }
 
         .btn-download:hover::before {
@@ -694,43 +1189,84 @@
         }
 
         .download-icon {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             animation: bounce 2s infinite;
         }
 
         .file-info {
-            margin-top: 15px;
+            margin-top: 20px;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            position: relative;
         }
 
         .file-info code {
             color: var(--secondary);
             background: rgba(0, 255, 170, 0.1);
-            padding: 4px 10px;
-            border-radius: 6px;
+            padding: 5px 12px;
+            border-radius: 8px;
             font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
         }
 
         .warning-text {
-            margin-top: 15px;
-            padding: 12px;
+            margin-top: 18px;
+            padding: 14px 20px;
             background: rgba(255, 170, 0, 0.1);
             border: 1px solid var(--warning);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--warning);
             font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* FEATURES GRID */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .feature-item {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .feature-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-item span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-soft);
         }
 
         /* CHANGELOG */
         .changelog-body {
-            max-height: 400px;
+            max-height: 450px;
             overflow-y: auto;
             padding-right: 10px;
         }
 
         .changelog-body::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         .changelog-body::-webkit-scrollbar-track {
@@ -744,11 +1280,11 @@
         }
 
         .changelog-item {
-            margin-bottom: 24px;
-            padding: 16px;
+            margin-bottom: 20px;
+            padding: 18px;
             background: rgba(26, 26, 26, 0.4);
             border-left: 4px solid var(--primary);
-            border-radius: 8px;
+            border-radius: 0 12px 12px 0;
             transition: all 0.3s;
         }
 
@@ -757,21 +1293,38 @@
             transform: translateX(5px);
         }
 
+        .changelog-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
         .changelog-version {
-            display: inline-block;
             padding: 6px 14px;
             background: var(--gradient);
             color: #000;
-            font-weight: 900;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
+            font-weight: 800;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: 'Roboto Mono', monospace;
         }
 
         .changelog-date {
             color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 12px;
+            font-size: 0.8rem;
+        }
+
+        .changelog-tag {
+            padding: 4px 10px;
+            background: rgba(0, 255, 136, 0.15);
+            border: 1px solid var(--success);
+            border-radius: 15px;
+            font-size: 0.7rem;
+            color: var(--success);
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .changelog-item ul {
@@ -780,10 +1333,11 @@
         }
 
         .changelog-item li {
-            padding: 6px 0;
-            color: var(--text);
+            padding: 8px 0;
+            color: var(--text-soft);
             position: relative;
-            padding-left: 24px;
+            padding-left: 22px;
+            font-size: 0.95rem;
         }
 
         .changelog-item li::before {
@@ -798,17 +1352,17 @@
         .status-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .status-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 18px;
+            padding: 16px 18px;
             background: rgba(26, 26, 26, 0.4);
-            border-radius: 10px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
             transition: all 0.3s;
         }
 
@@ -817,28 +1371,54 @@
             border-color: var(--primary);
         }
 
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-left i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
         .status-label {
-            color: var(--text-muted);
+            color: var(--text);
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
         }
 
         .status-value {
-            padding: 6px 16px;
-            background: rgba(0, 255, 136, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: rgba(0, 255, 136, 0.15);
             border: 1px solid var(--success);
             border-radius: 20px;
             color: var(--success);
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
         }
 
         .status-value::before {
-            content: '●';
-            margin-right: 6px;
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
             animation: blink 1.5s infinite;
+        }
+
+        .status-value.warning {
+            background: rgba(255, 170, 0, 0.15);
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+
+        .status-value.warning::before {
+            background: var(--warning);
         }
 
         /* SUPPORT CARD */
@@ -851,11 +1431,11 @@
         .support-link {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 18px;
-            background: rgba(26, 26, 26, 0.6);
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 12px;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(26, 26, 26, 0.5);
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 14px;
             color: var(--text);
             text-decoration: none;
             font-weight: 700;
@@ -865,60 +1445,122 @@
         .support-link:hover {
             background: rgba(0, 212, 255, 0.1);
             border-color: var(--primary);
-            transform: translateX(5px);
+            transform: translateX(8px);
             box-shadow: 0 5px 25px rgba(0, 212, 255, 0.3);
         }
 
         .support-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            border-radius: 12px;
+            font-size: 1.5rem;
+        }
+
+        .support-icon i {
+            color: #000;
+        }
+
+        .support-info {
+            flex: 1;
+        }
+
+        .support-info span {
+            display: block;
+        }
+
+        .support-info .support-title {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .support-info .support-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* QUICK STATS */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .quick-stat {
+            padding: 18px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .quick-stat-value {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .quick-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         /* FOOTER */
         .dashboard-footer {
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 40px auto 20px;
-            padding: 24px;
+            padding: 25px;
             text-align: center;
             color: var(--text-muted);
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            border-top: 1px solid rgba(0, 212, 255, 0.15);
         }
 
         .dashboard-footer strong {
             color: var(--primary);
         }
 
+        .footer-bottom {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-stat i {
+            color: var(--primary);
+        }
+
         /* ============================================
            ANIMATIONS
            ============================================ */
-        @keyframes gradientMove {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 50px); }
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
         @keyframes floatIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes pulseGlow {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-
-        @keyframes rotateBorder {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0%, 100% { opacity: 0.25; }
+            50% { opacity: 0.5; }
         }
 
         @keyframes shine {
@@ -927,22 +1569,8 @@
         }
 
         @keyframes logoFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(3deg); }
-        }
-
-        @keyframes pulseRing {
-            0% {
-                transform: translate(-50%, -50%) scale(0.8);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.5;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 0;
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         @keyframes gradientShift {
@@ -950,30 +1578,14 @@
             50% { background-position: 100% 50%; }
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes cornerPulse {
             0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
+            50% { opacity: 0.7; }
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        @keyframes statusPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
         }
 
         @keyframes blink {
@@ -983,7 +1595,7 @@
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
         /* ============================================
@@ -991,16 +1603,16 @@
            ============================================ */
         @media (max-width: 768px) {
             .main-title {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
             }
 
             .login-card {
-                padding: 40px 28px;
+                padding: 35px 25px;
             }
 
             .wolf-logo {
-                width: 140px;
-                height: 140px;
+                width: 130px;
+                height: 130px;
             }
 
             .dashboard-header {
@@ -1018,27 +1630,58 @@
             }
 
             .info-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
             .btn-download {
                 font-size: 1.1rem;
-                padding: 18px 36px;
+                padding: 20px 35px;
+            }
+
+            .stats-preview {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .user-info-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .user-info-items {
+                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
             .main-title {
-                font-size: 1.8rem;
+                font-size: 1.9rem;
+                letter-spacing: 2px;
             }
 
             .wolf-logo {
-                width: 120px;
-                height: 120px;
+                width: 110px;
+                height: 110px;
             }
 
             .login-card {
                 padding: 30px 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-preview {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
         }
 
@@ -1053,32 +1696,94 @@
             text-align: center;
         }
 
-        .mb-20 {
-            margin-bottom: 20px;
+        /* Notification Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 18px 28px;
+            background: var(--glass);
+            border: 2px solid var(--primary);
+            border-radius: 14px;
+            color: var(--text);
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideInRight 0.5s ease;
+            backdrop-filter: blur(20px);
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .toast.success {
+            border-color: var(--success);
+        }
+
+        .toast.success i {
+            color: var(--success);
+        }
+
+        .toast i {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <!-- ============================================
-         BACKGROUND DO SISTEMA DE EMAIL
+         ANIMATED BACKGROUND
          ============================================ -->
     <div class="animated-background" id="particlesContainer"></div>
     <div class="grid-background"></div>
+    <div class="scanlines"></div>
+    <div class="floating-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
     <div class="mouse-glow" id="mouseGlow"></div>
+
+    <!-- ============================================
+         LOADING SCREEN
+         ============================================ -->
+    <div id="loadingScreen">
+        <img src="https://pfst.cf2.poecdn.net/base/image/f034ea345ef502d77285fa6a083d67354ded70b3c7310fbb061d7375e20dc0a7?w=4096&h=4096" alt="Loading" class="loading-logo">
+        <div class="loading-bar-container">
+            <div class="loading-bar" id="loadingBar"></div>
+        </div>
+        <div class="loading-text">RAFAEL EXTERNAL</div>
+        <div class="loading-status" id="loadingStatus">Inicializando sistema...</div>
+    </div>
 
     <!-- ============================================
          LOGIN SCREEN
          ============================================ -->
-    <div id="loginScreen">
+    <div id="loginScreen" class="hidden">
         <div class="login-container">
             <div class="login-glow"></div>
 
             <div class="login-card">
-                <!-- CORNER DECORATIONS -->
+                <!-- Tech Lines -->
+                <div class="tech-lines">
+                    <div class="tech-line horizontal"></div>
+                    <div class="tech-line horizontal"></div>
+                    <div class="tech-line horizontal"></div>
+                    <div class="tech-line vertical"></div>
+                    <div class="tech-line vertical"></div>
+                </div>
+
+                <!-- Corner Decorations -->
                 <div class="corner-decor top-left"></div>
                 <div class="corner-decor top-right"></div>
                 <div class="corner-decor bottom-left"></div>
@@ -1087,9 +1792,13 @@
                 <!-- LOGO SECTION -->
                 <div class="logo-section">
                     <div class="wolf-logo-container">
+                        <div class="hexagon-container">
+                            <div class="hexagon"></div>
+                        </div>
                         <img src="https://pfst.cf2.poecdn.net/base/image/f034ea345ef502d77285fa6a083d67354ded70b3c7310fbb061d7375e20dc0a7?w=4096&h=4096" alt="Rafael External" class="wolf-logo" id="wolfLogo">
-                        <div class="logo-pulse-ring"></div>
-                        <div class="logo-pulse-ring"></div>
+                        <div class="logo-ring logo-ring-1"></div>
+                        <div class="logo-ring logo-ring-2"></div>
+                        <div class="logo-ring logo-ring-3"></div>
                     </div>
 
                     <h1 class="main-title">
@@ -1097,18 +1806,65 @@
                         <span class="gradient-text secondary">EXTERNAL</span>
                     </h1>
                     <p class="subtitle">FiveM Loader</p>
-                    <span class="version-tag">v2.1.0 STABLE</span>
+                    <span class="version-tag">v1.0.0 ULTIMATE</span>
+                </div>
+
+                <!-- User Welcome -->
+                <div class="user-welcome">
+                    <div class="welcome-label">Bem-vindo de volta</div>
+                    <div class="welcome-name" id="welcomeUserName">Carregando...</div>
+                    <div class="user-details">
+                        <div class="user-detail-item">
+                            <i class="fas fa-globe"></i>
+                            <span id="userIP">...</span>
+                        </div>
+                        <div class="user-detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="userLocation">...</span>
+                        </div>
+                        <div class="user-detail-item">
+                            <i class="fas fa-desktop"></i>
+                            <span id="userOS">...</span>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- BOTÃO DE ENTRADA -->
                 <button class="btn-primary" id="enterBtn">
-                    <span class="btn-text">ENTRAR NO PAINEL</span>
+                    <i class="fas fa-rocket btn-icon"></i>
+                    <span>ACESSAR PAINEL</span>
                 </button>
+
+                <!-- Stats Preview -->
+                <div class="stats-preview">
+                    <div class="stat-item">
+                        <span class="stat-value" id="statUsers">2.4K</span>
+                        <span class="stat-label">Usuários</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">99.9%</span>
+                        <span class="stat-label">Uptime</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="statOnline">127</span>
+                        <span class="stat-label">Online</span>
+                    </div>
+                </div>
 
                 <!-- FOOTER -->
                 <div class="login-footer">
                     <p>© 2025 <strong>Rafael External</strong>. Todos os direitos reservados.</p>
-                    <p>Desenvolvido com ❤️ pela equipe Rafael External</p>
+                    <div class="footer-links">
+                        <a href="https://discord.gg/anB2pQSkrA" target="_blank" class="footer-link" title="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="footer-link" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="footer-link" title="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1123,60 +1879,146 @@
             <div class="header-left">
                 <img src="https://pfst.cf2.poecdn.net/base/image/f034ea345ef502d77285fa6a083d67354ded70b3c7310fbb061d7375e20dc0a7?w=4096&h=4096" alt="Rafael External" class="header-logo">
                 <div class="header-info">
-                    <h2>Bem-vindo, <span class="username" id="usernameDisplay">Usuário</span></h2>
-                    <span class="status-badge">ONLINE</span>
+                    <h2>Olá, <span class="username" id="usernameDisplay">Usuário</span>! 👋</h2>
+                    <div class="header-badges">
+                        <span class="status-badge">ONLINE</span>
+                        <span class="vip-badge"><i class="fas fa-crown"></i> VIP</span>
+                    </div>
                 </div>
             </div>
             <div class="header-right">
                 <a href="https://discord.gg/anB2pQSkrA" target="_blank" class="btn-header">
-                    <span>💬</span> Discord
+                    <i class="fab fa-discord"></i> Discord
                 </a>
+                <button class="btn-header" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i> Atualizar
+                </button>
                 <button class="btn-header btn-logout" id="logoutBtn">
-                    <span>🚪</span> Sair
+                    <i class="fas fa-sign-out-alt"></i> Sair
                 </button>
             </div>
         </header>
+
+        <!-- USER INFO BAR -->
+        <div class="user-info-bar">
+            <div class="user-info-items">
+                <div class="user-info-item">
+                    <i class="fas fa-user-circle"></i>
+                    <div class="info-content">
+                        <span class="info-label">Usuário</span>
+                        <span class="info-value" id="barUsername">-</span>
+                    </div>
+                </div>
+                <div class="user-info-item">
+                    <i class="fas fa-network-wired"></i>
+                    <div class="info-content">
+                        <span class="info-label">Seu IP</span>
+                        <span class="info-value" id="barIP">-</span>
+                    </div>
+                </div>
+                <div class="user-info-item">
+                    <i class="fas fa-map-pin"></i>
+                    <div class="info-content">
+                        <span class="info-label">Localização</span>
+                        <span class="info-value" id="barLocation">-</span>
+                    </div>
+                </div>
+                <div class="user-info-item">
+                    <i class="fas fa-laptop"></i>
+                    <div class="info-content">
+                        <span class="info-label">Sistema</span>
+                        <span class="info-value" id="barSystem">-</span>
+                    </div>
+                </div>
+            </div>
+            <div class="current-time" id="currentTime">00:00:00</div>
+        </div>
 
         <!-- DASHBOARD GRID -->
         <div class="dashboard-grid">
             <!-- MAIN CARD -->
             <div class="card main-card">
                 <div class="card-header">
-                    <h3>Painel de Controle</h3>
+                    <h3><i class="fas fa-tachometer-alt"></i> Painel de Controle</h3>
+                    <span class="card-badge">PREMIUM</span>
                 </div>
                 <div class="card-body">
                     <div class="info-grid">
                         <div class="info-item">
-                            <strong>Plano</strong>
-                            <span id="planDisplay"></span>
+                            <i class="fas fa-user-shield"></i>
+                            <strong>Seu Plano</strong>
+                            <span class="highlight" id="planDisplay">VITALÍCIO ♾️</span>
                         </div>
                         <div class="info-item">
+                            <i class="fas fa-calendar-check"></i>
                             <strong>Expira em</strong>
-                            <span id="expiryDisplay">Vitalício ♾️</span>
+                            <span id="expiryDisplay">NUNCA</span>
                         </div>
                         <div class="info-item">
+                            <i class="fas fa-wifi"></i>
                             <strong>Seu IP</strong>
                             <span id="ipDisplay">Carregando...</span>
                         </div>
                         <div class="info-item">
+                            <i class="fas fa-users"></i>
                             <strong>Usuários Online</strong>
                             <span id="onlineUsers">127</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <strong>Última Sessão</strong>
+                            <span id="lastSession">Agora</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <strong>Proteção</strong>
+                            <span class="highlight">MÁXIMA</span>
                         </div>
                     </div>
 
                     <!-- DOWNLOAD SECTION -->
                     <div class="download-section">
-                        <h3>Baixar Loader</h3>
-                        <a href="downloads/Rafael External.7z" class="btn-download" download>
-                            <span class="download-icon">⬇</span>
-                            RAFAEL EXTERNAL v1.0
+                        <h3><i class="fas fa-download"></i> Baixar Loader</h3>
+                        <p class="download-subtitle">Última versao disponível para download</p>
+                        <a href="downloads/Rafael. External.7z" class="btn-download" download>
+                            <i class="fas fa-cloud-download-alt download-icon"></i>
+                            RAFAEL External v1.0
                         </a>
                         <div class="file-info">
-                            <p>Tamanho: <strong>24.8 MB</strong> | Versão: <strong>1.1.0</strong></p>
-                            <p>Hash SHA256: <code>8F3A2B1C9D4E...</code></p>
+                            <p><strong>Tamanho:</strong> 25.8 MB | <strong>Versão:</strong> q.0.0 ULTIMATE</p>
+                            <p>Hash SHA256: <code>8F3A2B1C9D4E5F6A...</code></p>
                         </div>
                         <div class="warning-text">
-                            ⚠ Desative o antivírus antes de executar. Falsos positivos podem ocorrer.
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Desative o antivírus antes de executar. Falsos positivos podem ocorrer.
+                        </div>
+                    </div>
+
+                    <!-- FEATURES -->
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-eye"></i>
+                            <span>ESP 3D</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>Aimbot</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-location-arrow"></i>
+                            <span>Teleport</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-car"></i>
+                            <span>Vehicle Mod</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-user-secret"></i>
+                            <span>Anti-Ban</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-ghost"></i>
+                            <span>God Mode</span>
                         </div>
                     </div>
                 </div>
@@ -1185,36 +2027,42 @@
             <!-- CHANGELOG CARD -->
             <div class="card">
                 <div class="card-header">
-                    <h3>Atualizações</h3>
+                    <h3><i class="fas fa-history"></i> Atualizações</h3>
                 </div>
                 <div class="card-body changelog-body">
                     <div class="changelog-item">
-                        <div class="changelog-version">v1.0.0</div>
-                        <div class="changelog-date">15 de Janeiro, 2025</div>
+                        <div class="changelog-header">
+                            <span class="changelog-version">v2.0.0</span>
+                            <span class="changelog-date">15 de Janeiro, 2025</span>
+                            <span class="changelog-tag">NOVO</span>
+                        </div>
                         <ul>
                             <li>Novo sistema de ESP 3D avançado</li>
                             <li>Aimbot com previsão de movimento</li>
-                            <li>Anti-ban otimizado</li>
-                            <li>Interface redesenhada</li>
+                            <li>Anti-ban otimizado para 2025</li>
+                            <li>Interface totalmente redesenhada</li>
                             <li>Suporte para última versão do FiveM</li>
                         </ul>
                     </div>
                     <div class="changelog-item">
-                        <div class="changelog-version">v2.0.5</div>
-                        <div class="changelog-date">08 de Janeiro, 2025</div>
+                        <div class="changelog-header">
+                            <span class="changelog-version">v1.8.5</span>
+                            <span class="changelog-date">08 de Janeiro, 2025</span>
+                        </div>
                         <ul>
                             <li>Correções de bugs críticos</li>
-                            <li>Melhoria na performance</li>
-                            <li>Novo sistema de teleport</li>
+                            <li>Melhoria na performance geral</li>
+                            <li>Novo sistema de teleport rápido</li>
                         </ul>
                     </div>
                     <div class="changelog-item">
-                        <div class="changelog-version">v1.0.0</div>
-                        <div class="changelog-date">01 de Janeiro, 2025</div>
+                        <div class="changelog-header">
+                            <span class="changelog-version">v1.8.0</span>
+                            <span class="changelog-date">01 de Janeiro, 2025</span>
+                        </div>
                         <ul>
                             <li>Reescrita completa do código</li>
-                            <li>Novo sistema anti-detecção</li>
-                            <li>Menu redesenhado</li>
+                            <li>Novo sistema anti-detecção AI</li>
                             <li>Performance 300% melhor</li>
                         </ul>
                     </div>
@@ -1224,25 +2072,55 @@
             <!-- STATUS CARD -->
             <div class="card">
                 <div class="card-header">
-                    <h3>Status do Sistema</h3>
+                    <h3><i class="fas fa-server"></i> Status do Sistema</h3>
                 </div>
                 <div class="card-body">
                     <div class="status-list">
                         <div class="status-item">
-                            <span class="status-label">Loader</span>
+                            <div class="status-left">
+                                <i class="fas fa-database"></i>
+                                <span class="status-label">Servidor Principal</span>
+                            </div>
                             <span class="status-value">ONLINE</span>
                         </div>
                         <div class="status-item">
-                            <span class="status-label">Servidor</span>
+                            <div class="status-left">
+                                <i class="fas fa-cloud"></i>
+                                <span class="status-label">Cloud Services</span>
+                            </div>
                             <span class="status-value">100% UP</span>
                         </div>
                         <div class="status-item">
-                            <span class="status-label">Proteção</span>
-                            <span class="status-value">ATIVA</span>
+                            <div class="status-left">
+                                <i class="fas fa-shield-virus"></i>
+                                <span class="status-label">Anti-Cheat Bypass</span>
+                            </div>
+                            <span class="status-value">ATIVO</span>
                         </div>
                         <div class="status-item">
-                            <span class="status-label">Anti-Leak</span>
+                            <div class="status-left">
+                                <i class="fas fa-lock"></i>
+                                <span class="status-label">Anti-Leak</span>
+                            </div>
+                            <span class="status-value">SEGURO</span>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-left">
+                                <i class="fas fa-sync"></i>
+                                <span class="status-label">Auto-Update</span>
+                            </div>
                             <span class="status-value">ATIVO</span>
+                        </div>
+                    </div>
+
+                    <div class="quick-stats">
+                        <div class="quick-stat">
+                            <div class="quick-stat-value" id="totalDownloads">15.2K</div>
+                            <div class="quick-stat-label">Downloads</div>
+                        </div>
+                        <div class="quick-stat">
+                            <div class="quick-stat-value">24/7</div>
+                            <div class="quick-stat-label">Suporte</div>
                         </div>
                     </div>
                 </div>
@@ -1251,17 +2129,36 @@
             <!-- SUPPORT CARD -->
             <div class="card">
                 <div class="card-header">
-                    <h3>Suporte</h3>
+                    <h3><i class="fas fa-headset"></i> Suporte & Comunidade</h3>
                 </div>
                 <div class="card-body">
                     <div class="support-links">
                         <a href="https://discord.gg/anB2pQSkrA" target="_blank" class="support-link">
-                            <span class="support-icon">💬</span>
-                            <span>Entrar no Discord</span>
+                            <div class="support-icon">
+                                <i class="fab fa-discord"></i>
+                            </div>
+                            <div class="support-info">
+                                <span class="support-title">Servidor Discord</span>
+                                <span class="support-desc">Junte-se à nossa comunidade</span>
+                            </div>
                         </a>
                         <a href="https://discord.gg/anB2pQSkrA" target="_blank" class="support-link">
-                            <span class="support-icon">✉️</span>
-                            <span>E-mail Suporte</span>
+                            <div class="support-icon">
+                                <i class="fas fa-ticket-alt"></i>
+                            </div>
+                            <div class="support-info">
+                                <span class="support-title">Abrir Ticket</span>
+                                <span class="support-desc">Suporte técnico 24/7</span>
+                            </div>
+                        </a>
+                        <a href="#" class="support-link">
+                            <div class="support-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="support-info">
+                                <span class="support-title">Documentação</span>
+                                <span class="support-desc">Guias e tutoriais</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -1270,8 +2167,22 @@
 
         <!-- FOOTER -->
         <footer class="dashboard-footer">
-            <p>© 2025 <strong>Rafael External</strong> - FiveM Loader</p>
+            <p>© 2025 <strong>Rafael External</strong> - Premium FiveM Loader</p>
             <p>Desenvolvido com ❤️ pela equipe Rafael External</p>
+            <div class="footer-bottom">
+                <div class="footer-stat">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Indetectável</span>
+                </div>
+                <div class="footer-stat">
+                    <i class="fas fa-bolt"></i>
+                    <span>Atualização Automática</span>
+                </div>
+                <div class="footer-stat">
+                    <i class="fas fa-headset"></i>
+                    <span>Suporte 24/7</span>
+                </div>
+            </div>
         </footer>
     </div>
 
@@ -1280,19 +2191,187 @@
          ============================================ -->
     <script>
         // ============================================
-        // SISTEMA DE PARTÍCULAS DO EMAIL
+        // GLOBAL VARIABLES
+        // ============================================
+        let userData = {
+            username: 'Usuário',
+            ip: 'N/A',
+            location: 'N/A',
+            os: 'N/A',
+            browser: 'N/A'
+        };
+
+        // ============================================
+        // LOADING SCREEN
+        // ============================================
+        const loadingMessages = [
+            'Inicializando sistema...',
+            'Conectando ao servidor...',
+            'Verificando licença...',
+            'Carregando módulos...',
+            'Detectando informações...',
+            'Preparando interface...',
+            'Quase pronto...',
+            'Bem-vindo!'
+        ];
+
+        async function initializeLoader() {
+            const loadingBar = document.getElementById('loadingBar');
+            const loadingStatus = document.getElementById('loadingStatus');
+
+            // Fetch user info while loading
+            const userInfoPromise = fetchUserInfo();
+
+            for (let i = 0; i <= 100; i += 12) {
+                await new Promise(resolve => setTimeout(resolve, 200));
+                loadingBar.style.width = Math.min(i, 100) + '%';
+                const msgIndex = Math.floor((i / 100) * (loadingMessages.length - 1));
+                loadingStatus.textContent = loadingMessages[msgIndex];
+            }
+
+            // Wait for user info
+            await userInfoPromise;
+
+            loadingBar.style.width = '100%';
+            loadingStatus.textContent = loadingMessages[loadingMessages.length - 1];
+
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            document.getElementById('loadingScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+        }
+
+        // ============================================
+        // FETCH USER INFO (IP, Location, OS, etc.)
+        // ============================================
+        async function fetchUserInfo() {
+            try {
+                // Get IP and location info
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+
+                userData.ip = data.ip || 'N/A';
+                userData.location = `${data.city || 'N/A'}, ${data.country_name || ''}`;
+
+                // Detect OS from User Agent
+                userData.os = detectOS();
+                userData.browser = detectBrowser();
+
+                // Generate username based on available info
+                userData.username = generateUsername(data);
+
+                // Update UI
+                updateUserInfoUI();
+
+            } catch (error) {
+                console.error('Error fetching user info:', error);
+                // Fallback to basic IP fetch
+                try {
+                    const fallback = await fetch('https://api.ipify.org?format=json');
+                    const fallbackData = await fallback.json();
+                    userData.ip = fallbackData.ip || 'N/A';
+                } catch (e) {
+                    userData.ip = 'N/A';
+                }
+                userData.os = detectOS();
+                userData.browser = detectBrowser();
+                userData.username = 'Usuário_' + Math.floor(Math.random() * 9999);
+                updateUserInfoUI();
+            }
+        }
+
+        // ============================================
+        // DETECT OPERATING SYSTEM
+        // ============================================
+        function detectOS() {
+            const userAgent = navigator.userAgent;
+            const platform = navigator.platform;
+
+            if (/Win/.test(platform)) {
+                if (/Windows NT 10.0/.test(userAgent)) return 'Windows 10/11';
+                if (/Windows NT 6.3/.test(userAgent)) return 'Windows 8.1';
+                if (/Windows NT 6.2/.test(userAgent)) return 'Windows 8';
+                if (/Windows NT 6.1/.test(userAgent)) return 'Windows 7';
+                return 'Windows';
+            }
+            if (/Mac/.test(platform)) return 'macOS';
+            if (/Linux/.test(platform)) return 'Linux';
+            if (/Android/.test(userAgent)) return 'Android';
+            if (/iPhone|iPad|iPod/.test(userAgent)) return 'iOS';
+
+            return 'Desconhecido';
+        }
+
+        // ============================================
+        // DETECT BROWSER
+        // ============================================
+        function detectBrowser() {
+            const userAgent = navigator.userAgent;
+
+            if (userAgent.includes('Firefox')) return 'Firefox';
+            if (userAgent.includes('Edg')) return 'Edge';
+            if (userAgent.includes('Chrome')) return 'Chrome';
+            if (userAgent.includes('Safari')) return 'Safari';
+            if (userAgent.includes('Opera') || userAgent.includes('OPR')) return 'Opera';
+
+            return 'Browser';
+        }
+
+        // ============================================
+        // GENERATE USERNAME
+        // ============================================
+        function generateUsername(data) {
+            const prefixes = ['Player', 'Gamer', 'Pro', 'Elite', 'Master', 'Cyber', 'Neo', 'Alpha'];
+            const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+
+            // Use part of city name if available
+            if (data && data.city) {
+                const cityPart = data.city.substring(0, 3).toUpperCase();
+                return `${prefix}_${cityPart}_${Math.floor(Math.random() * 999)}`;
+            }
+
+            // Use part of IP as identifier
+            if (data && data.ip) {
+                const ipPart = data.ip.split('.').pop();
+                return `${prefix}_${ipPart}`;
+            }
+
+            return `${prefix}_${Math.floor(Math.random() * 9999)}`;
+        }
+
+        // ============================================
+        // UPDATE UI WITH USER INFO
+        // ============================================
+        function updateUserInfoUI() {
+            // Login screen
+            document.getElementById('welcomeUserName').textContent = userData.username;
+            document.getElementById('userIP').textContent = userData.ip;
+            document.getElementById('userLocation').textContent = userData.location;
+            document.getElementById('userOS').textContent = userData.os;
+
+            // Dashboard
+            document.getElementById('usernameDisplay').textContent = userData.username;
+            document.getElementById('ipDisplay').textContent = userData.ip;
+            document.getElementById('barUsername').textContent = userData.username;
+            document.getElementById('barIP').textContent = userData.ip;
+            document.getElementById('barLocation').textContent = userData.location;
+            document.getElementById('barSystem').textContent = `${userData.os} • ${userData.browser}`;
+        }
+
+        // ============================================
+        // PARTICLE SYSTEM
         // ============================================
         function createParticles() {
             const container = document.getElementById('particlesContainer');
-            const particleCount = 50;
+            const particleCount = 60;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
 
-                const size = Math.random() * 3 + 1;
-                const duration = Math.random() * 20 + 10;
-                const delay = Math.random() * 5;
+                const size = Math.random() * 4 + 1;
+                const duration = Math.random() * 25 + 15;
+                const delay = Math.random() * 8;
                 const startX = Math.random() * 100 - 50;
                 const endX = Math.random() * 100 - 50;
 
@@ -1309,7 +2388,7 @@
         }
 
         // ============================================
-        // EFEITO DE BRILHO DO MOUSE
+        // MOUSE GLOW EFFECT
         // ============================================
         function setupMouseGlow() {
             const mouseGlow = document.getElementById('mouseGlow');
@@ -1334,89 +2413,102 @@
             document.documentElement.classList.add('dark');
         }
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (event.matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
+            document.documentElement.classList.toggle('dark', event.matches);
         });
 
         // ============================================
-        // BOTÃO DE ENTRADA - VAI DIRETO PARA DASHBOARD
+        // CLOCK UPDATE
         // ============================================
-        document.getElementById('enterBtn').addEventListener('click', function() {
-            // Esconde tela de login
-            document.getElementById('loginScreen').classList.add('hidden');
-
-            // Mostra dashboard
-            document.getElementById('dashboardScreen').classList.add('active');
-
-            // Busca IP do usuário
-            getUserIP();
-
-            // Inicia contador de usuários online
-            updateOnlineUsers();
-        });
-
-        // ============================================
-        // LOGOUT - VOLTA PARA TELA INICIAL
-        // ============================================
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            // Esconde dashboard
-            document.getElementById('dashboardScreen').classList.remove('active');
-
-            // Mostra tela de login
-            document.getElementById('loginScreen').classList.remove('hidden');
-        });
-
-        // ============================================
-        // GET USER IP
-        // ============================================
-        async function getUserIP() {
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                document.getElementById('ipDisplay').textContent = data.ip;
-            } catch (error) {
-                console.error('Error getting IP:', error);
-                document.getElementById('ipDisplay').textContent = 'N/A';
-            }
+        function updateClock() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('pt-BR', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            const clockEl = document.getElementById('currentTime');
+            if (clockEl) clockEl.textContent = timeStr;
         }
 
         // ============================================
-        // UPDATE ONLINE USERS (ANIMAÇÃO)
+        // ONLINE USERS ANIMATION
         // ============================================
         function updateOnlineUsers() {
             let currentUsers = 127;
 
             setInterval(() => {
-                const variation = Math.floor(Math.random() * 10) - 5;
-                currentUsers = Math.max(80, Math.min(150, currentUsers + variation));
-                document.getElementById('onlineUsers').textContent = currentUsers;
-            }, 8000);
+                const variation = Math.floor(Math.random() * 8) - 3;
+                currentUsers = Math.max(100, Math.min(180, currentUsers + variation));
+
+                const onlineEl = document.getElementById('onlineUsers');
+                const statOnlineEl = document.getElementById('statOnline');
+
+                if (onlineEl) onlineEl.textContent = currentUsers;
+                if (statOnlineEl) statOnlineEl.textContent = currentUsers;
+            }, 5000);
         }
 
         // ============================================
-        // LOGO ANIMATION
+        // TOAST NOTIFICATION
         // ============================================
-        setTimeout(() => {
-            document.getElementById('wolfLogo').style.animation = 'logoFloat 6s ease-in-out infinite';
-        }, 500);
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideOutRight 0.5s ease forwards';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
 
         // ============================================
-        // INICIALIZAÇÃO
+        // BUTTON HANDLERS
+        // ============================================
+        document.getElementById('enterBtn').addEventListener('click', function() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('dashboardScreen').classList.add('active');
+
+            showToast(`Bem-vindo, ${userData.username}!`, 'success');
+            updateOnlineUsers();
+
+            // Start clock
+            updateClock();
+            setInterval(updateClock, 1000);
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            document.getElementById('dashboardScreen').classList.remove('active');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            showToast('Sessão encerrada com sucesso!', 'info');
+        });
+
+        document.getElementById('refreshBtn').addEventListener('click', function() {
+            showToast('Dados atualizados!', 'success');
+            // Re-fetch user info
+            fetchUserInfo();
+        });
+
+        // ============================================
+        // INITIALIZATION
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             setupMouseGlow();
+            initializeLoader();
         });
 
         // ============================================
         // CONSOLE BRANDING
         // ============================================
-        console.log('%c RAFAEL EXTERNAL ', 'background: linear-gradient(135deg, #00d4ff, #00ffaa); color: #000; font-size: 24px; font-weight: bold; padding: 10px;');
-        console.log('%c FiveM Loader v2.1.0 ', 'color: #00d4ff; font-size: 14px;');
-        console.log('%c🐺 Rafael External - Feito com dedicação pela equipe\n', 'color: #00d4ff; font-size: 16px;');
+        console.log('%c RAFAEL EXTERNAL ', 'background: linear-gradient(135deg, #00d4ff, #00ffaa); color: #000; font-size: 28px; font-weight: bold; padding: 15px 25px; border-radius: 10px;');
+        console.log('%c Premium FiveM Loader v2.0.0 ULTIMATE ', 'color: #00d4ff; font-size: 14px; font-weight: bold;');
+        console.log('%c 🐺 Desenvolvido com dedicação pela equipe Rafael External', 'color: #00ffaa; font-size: 12px;');
+        console.log('%c ⚠️ Não compartilhe informações do console!', 'color: #ffaa00; font-size: 11px;');
     </script>
 </body>
 </html>
